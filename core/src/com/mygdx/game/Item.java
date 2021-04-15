@@ -45,7 +45,5 @@ public abstract class Item {
 	public void  moveY(int speed) {
 		this.pos.y+=speed;
 	}
-	
-	
-	
+
 }

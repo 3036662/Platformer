@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Enemies implements Layer {
 	private Texture wolf_left1,wolf_left2,wolf_right1,wolf_right2 ;
 	
+	//  ласс "волк"
 	public class Wolf extends Item {		
 		private Vector2 pos_start;
 		private int vx; // скорость
@@ -17,7 +18,6 @@ public class Enemies implements Layer {
 		private int frame_numb; // номер кадра
 		
 		
-		// парам: нач положение, длина пробежки, начальна€ скорость
 		public Wolf(int x,int y,int len,int vx) {
 			super(x,y);		
 			this.pos_start=new Vector2(x,y);
@@ -25,10 +25,12 @@ public class Enemies implements Layer {
 			this.vx=vx;
 		}
 		
+		// бежать
 		private void run() {			
 			moveX(vx);
 		}
 		
+		// анимаци€ бега
 		private void animate_run() {
 			Date date=new Date();
 			if (vx!=0) {
@@ -36,13 +38,12 @@ public class Enemies implements Layer {
 					   if (frame_numb==0 ) {
 						   frame_numb++;
 					   } else {frame_numb--;}
-					   lastframe_time=date.getTime();
-				   
+					   lastframe_time=date.getTime();				 
 				   }
-			}
-			
+			}			
 		}
 		
+		// обновить состо€ние
 		public void update() {
 			animate_run();
 			// разворот волка
@@ -53,29 +54,21 @@ public class Enemies implements Layer {
 				pos_start.x+=1200;
 				setX(pos_start.x);
 			}
-		}
-	
+		}	
 	}
-		
 	
-	
-	Wolf[] wolfs;
+	Wolf[] wolfs; // массив дл€ объектов класса ¬олк
 	
 	// конструктор
 	public Enemies(){	
 		wolf_left1=new Texture("wolf_left1.png");
 		wolf_left2=new Texture("wolf_left2.png");
 		wolf_right1=new Texture("wolf_right1.png");
-		wolf_right2=new Texture("wolf_right2.png");
-		
+		wolf_right2=new Texture("wolf_right2.png");		
 		wolfs=new Wolf[2];
 		wolfs[0]=new Wolf(100,50,200,1);
 		wolfs[1]=new Wolf(510,50,200,2);
 	}
-	
-	
-	
-	
 	
 	public void render(SpriteBatch batch) {
 		for (int i=0;i<wolfs.length;i++) {
@@ -94,6 +87,7 @@ public class Enemies implements Layer {
 		}
 	}
 	
+	// прокрутка сло€ влево
 	public void moveLeft(int speed) {
 		for (int i=0;i<wolfs.length;i++) {
 			wolfs[i].moveX(-speed);	

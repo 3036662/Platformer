@@ -15,6 +15,7 @@ public class SaveRecords {
 	private FileHandle file;
 
 	@SuppressWarnings("unchecked")
+	// конструктор
 	public SaveRecords() {
 		this.fileName="records.dat";	
 		 map=new TreeMap<Integer, String>();
@@ -51,6 +52,7 @@ public class SaveRecords {
 		}
 	}
 	
+	// новая запись
 	public void NewRec(String name,Integer score){
 		this.map.put(score,name);
 		 if (file.exists()) {
@@ -66,8 +68,8 @@ public class SaveRecords {
 			}
 		 }
 	}
-	
-	
+
+	// вернет список в виде объекта класса TreeMap
 	public TreeMap<Integer, String> getRecs() {
 		return this.map;
 	}

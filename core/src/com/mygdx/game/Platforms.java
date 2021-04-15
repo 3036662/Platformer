@@ -22,16 +22,11 @@ public class Platforms implements Layer {
     		for (int i=0;i<len;i++) {
     			carrots[i]=new Carrot((int)(pos.x+64*i+18),(int)(pos.y+40),rd.nextBoolean());
     		}
-    		
-    	}
-    
+    	}    
     	public int getLen() {
     		return this.len;
     	}
     }
-	
-	 
-	
 	
 	// морковки
 	public class Carrot extends Item {
@@ -45,10 +40,8 @@ public class Platforms implements Layer {
 		}
 		public void setVisible(boolean vis) {
 		    this.visible=vis;	
-		}
-		
+		}	
 	}
-	
 	
 	private Texture img; // Текстура поляны
 	private Texture ground; // Текстура для земли
@@ -57,8 +50,6 @@ public class Platforms implements Layer {
 	Carrot[] carrots; // массив объектов морковка
 	Glade[] glds; // массив полянок
 	Glade[] grounds;// массив земля
-	
-	
 	
 	// конструктор
 	// случайным образом раскидывает платформы по миру

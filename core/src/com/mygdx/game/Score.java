@@ -63,11 +63,13 @@ public class Score implements Layer{
 		}
 	}
 	
+	// конец игры
 	public void gameOver(){
 		this.gameOverScreen=false;
 		this.gameOver=true;
 	}
 	
+	// новая игра
 	public void NewGame() {
 		this.gameOver=false;
 		lifes=3;
@@ -83,31 +85,38 @@ public class Score implements Layer{
 		img.dispose();		
 	}
 	
+	// вернет количество жизней
 	public int getLifes() {
 		return this.lifes;
 	}
 	
+	// минус одна жизнь
 	public void minusLife() {
 		this.lifes--;
 	}
 	
+	// вернет количество очков 
 	public int getPoints() {
 		return this.points;
 	}
 	
+	// увеличиь кол-во очков на единицу
 	public void incrPoints() {
 		this.points++;
 		this.newLifeScore++;
 	}
 	
+	// истина, если конец игры
 	public boolean isGameOver() {
 		return this.gameOver;
 	}
 	
+	// истина, если первый запуск в этом окне
 	public boolean isFirstLaunch() {
 		return this.firstLaunch;
 	}
 	
+	// вернет время начала показа надписи GAME OVER
 	public long getGameOverScreenTime() {
 		return this.gameOverScreenTime;
 	}

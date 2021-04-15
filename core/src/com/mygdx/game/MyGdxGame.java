@@ -1,14 +1,12 @@
 package com.mygdx.game;
 
 import java.util.Date;
-
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 
 public class MyGdxGame extends ApplicationAdapter {
 	private SpriteBatch batch;	
@@ -19,9 +17,6 @@ public class MyGdxGame extends ApplicationAdapter {
 	private Score score; 
 	private MainMenu menu;
 
-	
-
-	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();	
@@ -49,8 +44,7 @@ public class MyGdxGame extends ApplicationAdapter {
 			// показать меню
 			Date date=new Date();
 			if (date.getTime()-score.getGameOverScreenTime()>1000 || score.isFirstLaunch()) {							
-				menu.render();
-				
+				menu.render();				
 			}
 		}
 	
@@ -100,9 +94,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		  bg.update();   
 		  score.update();					
 	}
-		
-	
-	
+			
 	private void updMove() {
 		rabbit.setHasGround(false);		   
 		 if (rabbit.isAlive()) {
@@ -134,10 +126,9 @@ public class MyGdxGame extends ApplicationAdapter {
 		   // уровень пола
 		   if (rabbit.getY()<50) {
 			   rabbit.setHasGround(true);
-		   }
-		   			
+		   }   			
 		 // движение влево
-		   if (Gdx.input.isKeyPressed(Keys.A) || Gdx.input.isKeyPressed(Keys.LEFT)) {
+		 if (Gdx.input.isKeyPressed(Keys.A) || Gdx.input.isKeyPressed(Keys.LEFT)) {
 			    rabbit.run_left();    
 		   }
 		   // движение вправо
@@ -162,8 +153,7 @@ public class MyGdxGame extends ApplicationAdapter {
 				   }
 			   }
 		   }
-		} 
-		 
+		} 		 
 		// воскресить зайца если есть в запасе жизни
 		if (!rabbit.isAlive() && rabbit.getY()>700) {	
 		   if (score.getLifes()>0) {
@@ -171,25 +161,21 @@ public class MyGdxGame extends ApplicationAdapter {
 			   this.enemies=new Enemies();
 				   rabbit.resurrect();	// Воскреснуть		   
 			   }
-			   else {
-				   
-				   score.gameOver();
-			   }
+			   else { score.gameOver(); }
 		}
 		
 	}
-	
-	
-	
-	
+		
 	@Override
 	public void dispose () {
 		batch.dispose();
 		menu.dispose();
 		bg.dispose();
-		enemies.dispose();
-		platf.dispose();
-		rabbit.dispose();
+		if(!score.isFirstLaunch()) {
+			enemies.dispose();
+			platf.dispose();
+			rabbit.dispose();
+		}
 		score.dispose();
 	}
 }

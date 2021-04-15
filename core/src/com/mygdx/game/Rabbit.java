@@ -1,6 +1,5 @@
 package com.mygdx.game;
 
-
 import java.util.Date;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -10,16 +9,13 @@ import com.badlogic.gdx.math.Vector2;
 // Класс для главного героя 
 public class Rabbit extends Item implements Layer {
    private Texture img,img2,img_dead,img_dead2; // текстура главного героя
-  // Vector2 pos; //координаты персоонажа
    private int speed=4; // скорость персоонажа в пикс/обновл
    private int vy=0; // корость по вертикали
    private int frame_numb;// номер кадра с зайцем
-  // private Date date;
    private long lastframe_time=0;// 
    private Boolean hasGround=false;
    private Boolean isAlive;
-
-   
+ 
    // конструктор 
    public Rabbit(boolean rabbitIsBlue) {
 	   super(50,250);
@@ -35,12 +31,8 @@ public class Rabbit extends Item implements Layer {
 		   img_dead=new Texture("pink_dead.png");
 		   img_dead2=new Texture("pink_dead2.png");
 	   }
-
 	   isAlive=true;
-	   
-   }
-   
-  
+   } 
    
    // отрисовка объекта
    public void render(SpriteBatch batch) {
@@ -54,20 +46,16 @@ public class Rabbit extends Item implements Layer {
 		   if (frame_numb==1) {tmp=img_dead;}else {tmp=img_dead2;}
 		   batch.draw(tmp, getX(), getY());
 	   }
-	   
-	   
-	   
-	   
    }
    
    //обновеление объекта
    public void update(){
 	// посчитать как повлияет физика на положение объекта
 	   if (!isAlive) {die_animate();}
-	   phisics();
-	   
+	   phisics();	   
    }
    
+   // анимация бега
    private void run_animate() {
 	   Date date=new Date();
 	   if (date.getTime()-lastframe_time>80) {
@@ -75,10 +63,10 @@ public class Rabbit extends Item implements Layer {
 			   frame_numb++;
 		   } else {frame_numb--;}
 		   lastframe_time=date.getTime();
-	   
 	   }
    }
    
+   //бежать влево
    public void run_left() {
 	   run_animate();
 	   if (getX()>10) {
@@ -116,7 +104,6 @@ public class Rabbit extends Item implements Layer {
 	   }	   
 	   // перемещение по вертикали
 	  moveY(vy);
-	   
    }
    
    //есть ли опора  у зайца под ногами
@@ -128,31 +115,33 @@ public class Rabbit extends Item implements Layer {
 	   this.hasGround=hasGround;
    }
    
+   // true если заяц жив
    public boolean isAlive() {
 	   return this.isAlive;
    }
    
+   //скорость по Y
    public int getVY() {
 	   return this.vy;
    }
-   
+   // скорость по Х
    public int getSpeed() {
 	   return this.speed;
    }
    
-   
+   // умереть
    public void die() {
 	   vy=6;
 	   isAlive=false;
 	   Date date=new Date();
 	   lastframe_time= date.getTime();
    }
-   
+   // воскреснуть
    public void resurrect() {
 	   setPos(new Vector2(50,250));	   
 	   isAlive=true;
    }
-   
+   // анимация смерти зайца
    private void die_animate() {
 	   Date date=new Date();
 	   if (date.getTime()-lastframe_time>80) {
@@ -162,9 +151,7 @@ public class Rabbit extends Item implements Layer {
 		   lastframe_time=date.getTime();
 	   
 	   }
-   }
-   
-   
+   }  
    
    public void dispose(){
 	   img.dispose();

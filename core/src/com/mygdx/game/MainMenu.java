@@ -18,7 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-
 public class MainMenu {
 	private Stage stage;
 	private Skin skin;
@@ -28,8 +27,7 @@ public class MainMenu {
 	private boolean  rabbit_blue=false;
 	private boolean isLevelNigh=false;
 
-	
-	
+	// конструктор
 	public MainMenu(Score score) {
 		this.newGame=false;
 		this.score=score;
@@ -42,7 +40,6 @@ public class MainMenu {
 	}
 	
 	public void render () {
-		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.act(Gdx.graphics.getDeltaTime()); // вызывает act для всех дочерних актеров
 		stage.draw(); 
 	}
@@ -53,8 +50,7 @@ public class MainMenu {
 		arrBack.dispose();
 	}
 	
-	
-	
+	//  запуск главного меню
 	private void mainMenuLaunch() {
 		stage.clear();
 		final TextButton newGameBtn = new TextButton("Игра", skin);
@@ -84,15 +80,10 @@ public class MainMenu {
 			}
 		});	
 		
-		
 		newGameBtn.setPosition(200, 400);
 		exitBtn.setPosition(200, 320);
 		aboutBtn.setPosition(200, 240);
 		recsBtn.setPosition(200, 160);
-		
-		//exitBtn.debug();
-		//newGameBtn.debug();
-		//aboutBtn.debug();
 		
 		stage.addActor(newGameBtn);
 		stage.addActor(exitBtn);
@@ -150,7 +141,6 @@ public class MainMenu {
 		stage.addActor(radioArr2[1]);
 		stage.addActor(lbl2);
 		
-
 		final TextField txtName=new TextField("Имя",skin);
 		txtName.setPosition(500, 70);
 		
@@ -167,8 +157,6 @@ public class MainMenu {
 		stage.addActor(txtName);
 		stage.addActor(saveBtn);
 	}
-	
-	
 	
 	private void aboutMenu(){
 		stage.clear();
@@ -195,11 +183,10 @@ public class MainMenu {
 				mainMenuLaunch();
 			}
 		});	
-		stage.addActor(backBtn);
-		
-			
+		stage.addActor(backBtn);	
 	}
 	
+	// показать экран помощи
 	private void helpScreen(int type) {
 		stage.clear();
 		String str1="Управление- кнопки WASD или LEFT,RIGHT,UP"
@@ -222,6 +209,7 @@ public class MainMenu {
 		stage.addActor(backBtn);
 	}
 	
+	// показать рекорды
 	private void showRecords() {
 		stage.clear();
 		Table table=new Table(skin);
@@ -247,34 +235,29 @@ public class MainMenu {
 			}
 		});
 		
-		table.add(backBtn);
-		
-		
-		
-		stage.addActor(table);
-		
-		
-		
-		
+		table.add(backBtn);		
+		stage.addActor(table);		
 	}
-
-	
-
+	// вернет истину если выбаран пункт "новая игра"
 	public boolean isNewGame(){
 		return this.newGame;
 	}
 	
+	// установить флаг "Новая игра" в положение истина
 	public void setNewGame(boolean ng) {
 		this.newGame=ng;
 	}
+	// вернет истину , если выбран синий цвет героя
 	public boolean isRabbitBlue() {
 		return this.rabbit_blue;
 	}
 	
+	// вернет истину, если выбран уровень "ночь"
 	public boolean isLevelNigh() {
 		return this.isLevelNigh;
 	}
 	
+	// установит флаг выбранного уровня
 	public void setLevelNight(boolean ln) {
 		this.isLevelNigh=ln;
 	}
